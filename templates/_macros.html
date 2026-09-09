@@ -171,7 +171,8 @@
     <span class="key"><i class="swatch swatch-2"></i> Student availability &mdash; % of students</span>
   </div>
   {% for row in rows %}
-    <div class="bars-row">
+    {# --i staggers the bar reveal by 45ms per row (see .track-fill in style.css) #}
+    <div class="bars-row" style="--i: {{ loop.index0 }}">
       <div class="bars-label">{{ row.skill }}<small>{{ row.category }}</small></div>
       <div class="bars">
         {# A zero value renders no bar at all. The fill has a 2px min-width so

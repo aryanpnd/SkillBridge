@@ -131,10 +131,12 @@
     </div>
     <div class="panel-body">
       {% for stage in placement.funnel %}
-        <div class="funnel-row">
+        <div class="funnel-row" style="--i: {{ loop.index0 }}">
           <span class="funnel-label">{{ stage.stage }}</span>
           <div class="track">
-            <div class="track-fill fill-1" style="width: {{ stage.percent }}%"></div>
+            {% if stage.percent > 0 %}
+              <div class="track-fill fill-1" style="width: {{ stage.percent }}%"></div>
+            {% endif %}
           </div>
           <span class="bars-value">{{ stage.value }} <span class="muted">({{ stage.percent }}%)</span></span>
         </div>
