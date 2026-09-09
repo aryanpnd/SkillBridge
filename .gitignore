@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# SkillBridge runtime files
+database/portal.db
+uploads/*
+!uploads/.gitkeep
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
