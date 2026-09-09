@@ -453,7 +453,8 @@ def student_dashboard():
     profile = student_profile_or_404()
     skills = db.student_skill_names(conn, profile["id"])
 
-    recommendations = recommend_for_student(conn, profile, limit=4) if skills else []
+    # 3, not 4: the card grid is 3 columns at desktop width, so 4 leaves an orphan.
+    recommendations = recommend_for_student(conn, profile, limit=3) if skills else []
     if skills:
         # Recompute the cached gaps from the full ranked list.
         refresh_skill_gaps(conn, profile["id"], recommend_for_student(conn, profile))
@@ -616,6 +617,7 @@ def student_resume():
         "resume.html", profile=profile,
         skills=db.student_skill_names(conn, profile["id"]),
         max_mb=MAX_UPLOAD_BYTES // (1024 * 1024),
+        library_size=len(rp.all_skill_names()),
         sample_exists=os.path.exists(os.path.join(BASE_DIR, "sample_data", "sample_resume.pdf")),
     )
 
